@@ -46,7 +46,7 @@ public class BusinessAutoLine {
 
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlRootElement(name = "Entry", namespace = "http://guidewire.com/pc/gx/gw.webservice.pc.pc1000.gxmodel.businessautolinemodel")
-        @XmlType(name="Entry")
+        @XmlType(name="Entry", namespace = "http://guidewire.com/pc/gx/gw.webservice.pc.pc1000.gxmodel.businessautolinemodel")
         public static class Entry {
             @XmlElement(name = "CovTerms", namespace = "http://guidewire.com/pc/gx/gw.webservice.pc.pc1000.gxmodel.clausemodel")
             protected CovTerms coverageTerm;

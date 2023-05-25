@@ -1,9 +1,6 @@
 package org.policycreation;
 
-import policyCreationPojo.request.BAModifiers;
-import policyCreationPojo.request.BusinessAutoLine;
-import policyCreationPojo.request.PolicyPeriodData;
-import policyCreationPojo.request.quoteSubmission;
+import policyCreationPojo.request.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -135,6 +132,22 @@ public class Main {
 
         businessAutoLine.setBaModifiers(baModifiers);
         policy.setBusinessAutoLine(businessAutoLine);
+
+        PeriodAnswers.Entry periodAnswerEntry = new PeriodAnswers.Entry();
+        periodAnswerEntry.setBooleanAnswer(true);
+        periodAnswerEntry.setQuestionCode("SprayPrune");
+        PeriodAnswers.Entry periodAnswerEntry1 = new PeriodAnswers.Entry();
+        periodAnswerEntry1.setBooleanAnswer(true);
+        periodAnswerEntry1.setQuestionCode("VehicleMaintProgram");
+
+        List<PeriodAnswers.Entry> listOfPeriodAnswer = new ArrayList<>();
+        listOfPeriodAnswer.add(periodAnswerEntry);
+        listOfPeriodAnswer.add(periodAnswerEntry1);
+
+        PeriodAnswers periodAnswers = new PeriodAnswers();
+        periodAnswers.setPeriodAnswersEntryList(listOfPeriodAnswer);
+
+        policy.setPeriodAnswers(periodAnswers);
         quote.setPolicyPeriodData(policy);
         quote.generateAsXml();
     }

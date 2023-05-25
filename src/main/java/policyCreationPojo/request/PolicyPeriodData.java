@@ -14,6 +14,19 @@ public class    PolicyPeriodData {
 
     @XmlElement(required = true, name = "BusinessAutoLine")
     protected BusinessAutoLine businessAutoLine;
+
+    @XmlElement(required = true, name = "PeriodAnswers")
+    protected PeriodAnswers periodAnswers;
+
+    public PeriodAnswers getPeriodAnswers() {
+        return periodAnswers;
+    }
+
+    public void setPeriodAnswers(PeriodAnswers periodAnswers) {
+        this.periodAnswers = periodAnswers;
+    }
+
+
     public boolean isAssignedRisk() {
         return assignedRisk;
     }
