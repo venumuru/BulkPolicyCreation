@@ -1,5 +1,7 @@
 package policyCreationPojo.request;
 
+import policyCreationPojo.request.jurisdictions.Jurisdictions;
+
 import javax.xml.bind.annotation.*;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -11,6 +13,17 @@ public class BusinessAutoLine {
 
     @XmlElement(name = "BAModifiers", namespace = "http://guidewire.com/pc/gx/gw.webservice.pc.pc1000.gxmodel.businessautolinemodel")
     protected BAModifiers baModifiers;
+
+    @XmlElement(name = "Drivers", namespace = "http://guidewire.com/pc/gx/gw.webservice.pc.pc1000.gxmodel.businessautolinemodel")
+    protected Drivers drivers;
+
+
+
+    @XmlElement(name = "Jurisdictions", namespace = "http://guidewire.com/pc/gx/gw.webservice.pc.pc1000.gxmodel.businessautolinemodel")
+    protected Jurisdictions jurisdictions;
+
+    @XmlElement(name = "Fleet", namespace = "http://guidewire.com/pc/gx/gw.webservice.pc.pc1000.gxmodel.businessautolinemodel")
+    protected String fleet;
 
     public BAModifiers getBaModifiers() {
         return baModifiers;
@@ -26,6 +39,21 @@ public class BusinessAutoLine {
 
     public void setBaLineCoverages(BALineCoverages baLineCoverages) {
         this.baLineCoverages = baLineCoverages;
+    }
+
+    public Drivers getDrivers() {
+        return drivers;
+    }
+    public void setDrivers(Drivers drivers) {
+        this.drivers = drivers;
+    }
+
+    public Jurisdictions getJurisdictions() {
+        return jurisdictions;
+    }
+
+    public void setJurisdictions(Jurisdictions jurisdictions) {
+        this.jurisdictions = jurisdictions;
     }
 
     @XmlAccessorType(XmlAccessType.FIELD)
@@ -61,7 +89,7 @@ public class BusinessAutoLine {
 
 
             @XmlAccessorType(XmlAccessType.FIELD)
-            @XmlRootElement(name = "CovTerms")
+            //@XmlRootElement(name = "CovTerms")
             public static class CovTerms {
                 @XmlElement(name = "Entry", namespace = "http://guidewire.com/pc/gx/gw.webservice.pc.pc1000.gxmodel.clausemodel")
                 protected EntryCoverTerm coverageTermEntry;

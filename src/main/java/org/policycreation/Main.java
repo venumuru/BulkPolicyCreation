@@ -1,6 +1,10 @@
 package org.policycreation;
 
 import policyCreationPojo.request.*;
+import policyCreationPojo.request.jurisdictions.JudCovTerms;
+import policyCreationPojo.request.jurisdictions.Coverages;
+import policyCreationPojo.request.jurisdictions.JudCovTerms;
+import policyCreationPojo.request.jurisdictions.Jurisdictions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -131,7 +135,8 @@ public class Main {
 
 
         businessAutoLine.setBaModifiers(baModifiers);
-        policy.setBusinessAutoLine(businessAutoLine);
+
+
 
         PeriodAnswers.Entry periodAnswerEntry = new PeriodAnswers.Entry();
         periodAnswerEntry.setBooleanAnswer(true);
@@ -148,6 +153,58 @@ public class Main {
         periodAnswers.setPeriodAnswersEntryList(listOfPeriodAnswer);
 
         policy.setPeriodAnswers(periodAnswers);
+
+///////////////////// drivers ///////////////////////////////////////////////////////////
+        DriversEntry driverEntry = new DriversEntry();
+        driverEntry.setDateOfBirth("1986-06-06");
+        driverEntry.setEffectiveDate("2023-04-24");
+        driverEntry.setExpirationDate("2024-04-24");
+        driverEntry.setFirstName("TEst");
+        driverEntry.setLastName("Last");
+        driverEntry.setLicenseNumber("4325435");
+        driverEntry.setLicenseState("CA");
+        driverEntry.setSeqNumber(1);
+
+        Drivers drivers = new Drivers();
+        drivers.setEntry(driverEntry);
+
+        businessAutoLine.setDrivers(drivers);
+///////////////////// Jurisdictions ///////////////////////////////////////////////////////////
+
+        Jurisdictions jurisdictions = new Jurisdictions();
+        Jurisdictions.JurisdictionsEntry jurisdictionsEntry = new Jurisdictions.JurisdictionsEntry();
+        Coverages coverage = new Coverages();
+        Coverages.CoveragesEntry coveragesEntry1 = new Coverages.CoveragesEntry();
+        JudCovTerms coverageTerms1 = new JudCovTerms();
+        List<JudCovTerms> coverTermsList = new ArrayList<>();
+        List<Coverages.CoveragesEntry> coveragesEntriesList = new ArrayList<>();
+        List<JudCovTerms.CoverageTermEntry> covTermsEntriesList = new ArrayList<>();
+
+        JudCovTerms.CoverageTermEntry coverageTermEntry1 = new JudCovTerms.CoverageTermEntry();
+
+        JudCovTerms.Pattern pattern1 = new JudCovTerms.Pattern();
+
+        coverageTermEntry1.setDisplayValue("25/50");
+        coverageTermEntry1.setValueTypeName("Package");
+        coverageTermEntry1.setPatternCode("BAOwnedUMBI");
+        pattern1.setPublicID("BAOwnedUMBICov");
+        covTermsEntriesList.add(coverageTermEntry1);
+        coverageTerms1.setCoverageTermEntry(coverageTermEntry1);
+        coverTermsList.add(coverageTerms1);
+        coveragesEntry1.setCoverageTerms(coverageTerms1);
+        coveragesEntry1.setPattern(pattern1);
+        coveragesEntriesList.add(coveragesEntry1);
+
+
+        coverage.setCoveragesEntry(coveragesEntriesList);
+        jurisdictionsEntry.setCoverages(coverage);
+        jurisdictionsEntry.setState("CA");
+        jurisdictions.setJurisdictionsEntries(jurisdictionsEntry);
+
+        businessAutoLine.setJurisdictions(jurisdictions);
+
+/////////////////////////////////////////////////////////////////////////////////////////
+        policy.setBusinessAutoLine(businessAutoLine);
         quote.setPolicyPeriodData(policy);
         quote.generateAsXml();
     }
