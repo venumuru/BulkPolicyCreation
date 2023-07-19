@@ -6,7 +6,7 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "Jurisdictions")
 public class Jurisdictions {
-
+///
     @XmlElement(name = "Entry", namespace = "http://guidewire.com/pc/gx/gw.webservice.pc.pc1000.gxmodel.businessautolinemodel")
     private JurisdictionsEntry jurisdictionsEntries;
 
