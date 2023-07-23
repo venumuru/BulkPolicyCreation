@@ -1,7 +1,10 @@
 package org.policycreation;
 
 import policyCreationPojo.request.*;
-import policyCreationPojo.request.jurisdictions.JudCovTerms;
+import policyCreationPojo.request.PrimaryContactRoles.PolicyContactRoles;
+import policyCreationPojo.request.PrimaryContactRoles.PrimaryContactAccountContactRole;
+import policyCreationPojo.request.PrimaryContactRoles.PrimaryContactRoleAccountContact;
+import policyCreationPojo.request.PrimaryNamedInsured.PrimaryNamedInsured;
 import policyCreationPojo.request.jurisdictions.Coverages;
 import policyCreationPojo.request.jurisdictions.JudCovTerms;
 import policyCreationPojo.request.jurisdictions.Jurisdictions;
@@ -205,6 +208,139 @@ public class Main {
 
 /////////////////////////////////////////////////////////////////////////////////////////
         policy.setBusinessAutoLine(businessAutoLine);
+
+/////////////////////////////// Primary named insured //////////////////////////////////////////////////////////
+
+        PrimaryNamedInsured primaryNamedInsured = new PrimaryNamedInsured();
+        PrimaryNamedInsured.AccountContactRole.AccountContact.Contact.PrimaryAddress primaryAddress = new PrimaryNamedInsured.AccountContactRole.AccountContact.Contact.PrimaryAddress();
+        primaryAddress.setAddressLine1("942 Miller Ave");
+        primaryAddress.setAddressLine2("Floor 0000");
+        primaryAddress.setAddressLine3("Developer Unit Habitation Cube #0000");
+        primaryAddress.setAddressType("business");
+        primaryAddress.setCedex("true");
+        primaryAddress.setCedexBureau("11");
+        primaryAddress.setCity("South San Francisco");
+        primaryAddress.setCountry("US");
+        primaryAddress.setCounty("San Mateo");
+        primaryAddress.setPostalCode("94080");
+        primaryAddress.setState("CA");
+
+
+        PrimaryNamedInsured.AccountContactRole.AccountContact.Contact contact = new PrimaryNamedInsured.AccountContactRole.AccountContact.Contact();
+        contact.setName("Bi-Metal Thermometers");
+        contact.setEmailAddress1("9088@guidewire.com");
+        contact.setEmailAddress2("8088@guidewire.com");
+        contact.setPrimaryAddress(primaryAddress);
+        contact.setSubtype("Company");
+        contact.setPrimaryPhone("work");
+        contact.setWorkPhone("6502692777");
+        contact.setPublicID("test_pc:9");
+
+        PrimaryNamedInsured.AccountContactRole.AccountContact accountContact = new PrimaryNamedInsured.AccountContactRole.AccountContact();
+        accountContact.setContact(contact);
+
+        PrimaryNamedInsured.AccountContactRole  accountContactRole= new PrimaryNamedInsured.AccountContactRole();
+        accountContactRole.setAccountContact(accountContact);
+
+        primaryNamedInsured.setAccountContactRole(accountContactRole);
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+        policy.setPrimaryNamedInsured(primaryNamedInsured);
+        policy.setPreferredCoverageCurrency("usd");
+        policy.setPreferredSettlementCurrency("usd");
+
+        PolicyPeriodData.UWCompany uwCompany = new PolicyPeriodData.UWCompany();
+        uwCompany.setCode("1111_11111");
+
+        policy.setUwCompany(uwCompany);
+        policy.setWrittenDate("2023-04-14");
+
+
+/////////////////////////////// Policy locations //////////////////////////////////////////////////////////
+
+PolicyLocations.PolicyLocationsEntry policyLocationsEntry = new PolicyLocations.PolicyLocationsEntry();
+PolicyLocations.PolicyLocationsEntry.TerritoryCodes.TerritoryEntry territoryCodesEntry = new PolicyLocations.PolicyLocationsEntry.TerritoryCodes.TerritoryEntry();
+        territoryCodesEntry.setCode("AAA");
+PolicyLocations.PolicyLocationsEntry.TerritoryCodes   territoryCodes = new PolicyLocations.PolicyLocationsEntry.TerritoryCodes();
+        territoryCodes.setTerritoryEntry(territoryCodesEntry);
+PolicyLocations.PolicyLocationsEntry.AccountLocation accountLocation = new PolicyLocations.PolicyLocationsEntry.AccountLocation();
+        accountLocation.setAddressLine1("942 Miller Ave");
+        accountLocation.setAddressLine2("Floor 0000");
+        accountLocation.setAddressLine3("Developer Unit Habitation Cube #0000");
+        accountLocation.setAddressType("business");
+        accountLocation.setDescription("Created by the Address Builder with code 0");
+        accountLocation.setCedex("true");
+        accountLocation.setCedexBureau("true");
+        accountLocation.setCity("South San Francisco");
+        accountLocation.setGeocodeStatus("none");
+        accountLocation.setCountry("US");
+        accountLocation.setLocationCode("0000");
+        accountLocation.setLocationNum("26");
+        accountLocation.setCounty("San Mateo");
+        accountLocation.setPhone("6502692777");
+        accountLocation.setPostalCode("94080");
+        accountLocation.setState("CA");
+        accountLocation.setNonSpecific("false");
+
+        List<PolicyLocations.PolicyLocationsEntry.AccountLocation> accountLocationList = new ArrayList<>();
+        accountLocationList.add(accountLocation);
+
+        policyLocationsEntry.setAccountLocations(accountLocationList);
+        policyLocationsEntry.setLocationNum("1");
+        policyLocationsEntry.setTerritoryCodesl(territoryCodes);
+
+        PolicyLocations policyLocations = new PolicyLocations();
+        policyLocations.setPolicyLocationsEntry(policyLocationsEntry);
+        policy.setPolicyLocations(policyLocations);
+/////////////////////////////// Policy contact roles //////////////////////////////////////////////////////////
+PolicyContactRoles policyContactRoles = new PolicyContactRoles();
+PolicyContactRoles.PolicyContactRolesEntry policyContactRolesEntry = new PolicyContactRoles.PolicyContactRolesEntry();
+PrimaryContactAccountContactRole policyContactRolesaccountContactRole = new PrimaryContactAccountContactRole();
+PrimaryContactRoleAccountContact.PrimaryContactRoleContact policyContactRolecontact = new PrimaryContactRoleAccountContact.PrimaryContactRoleContact();
+PrimaryContactRoleAccountContact.PrimaryContactRoleContact.PrimaryContactRolePrimaryAddress policyContactAddress = new PrimaryContactRoleAccountContact.PrimaryContactRoleContact.PrimaryContactRolePrimaryAddress();
+PrimaryContactRoleAccountContact policyContactRolesaccountContact = new PrimaryContactRoleAccountContact();
+PrimaryContactAccountContactRole.EntityNamedInsured entityNamedInsured = new PrimaryContactAccountContactRole.EntityNamedInsured();
+PrimaryContactAccountContactRole.EntityNamedInsured.IndustryCode industryCode = new PrimaryContactAccountContactRole.EntityNamedInsured.IndustryCode();
+        industryCode.setCode("3829");
+        entityNamedInsured.setIndustryCode(industryCode);
+        policyContactAddress.setAddressLine1("942 Miller Ave");
+        policyContactAddress.setAddressLine2("Floor 0000");
+        policyContactAddress.setAddressLine3("Developer Unit Habitation Cube #0000");
+        policyContactAddress.setAddressType("business");
+        policyContactAddress.setCedex("true");
+        policyContactAddress.setCedexBureau("11");
+        policyContactAddress.setCity("South San Francisco");
+        policyContactAddress.setCountry("US");
+        policyContactAddress.setCounty("San Mateo");
+        policyContactAddress.setPostalCode("94080");
+        policyContactAddress.setState("CA");
+        policyContactRolecontact.setName("Bi-Metal Thermometers");
+        policyContactRolecontact.setEmailAddress1("9088@guidewire.com");
+        policyContactRolecontact.setEmailAddress2("8088@guidewire.com");
+        policyContactRolecontact.setPrimaryAddress(policyContactAddress);
+        policyContactRolecontact.setSubtype("Company");
+        policyContactRolecontact.setPrimaryPhone("work");
+        policyContactRolecontact.setWorkPhone("6502692777");
+        policyContactRolecontact.setPublicID("test_pc:9");
+
+        policyContactRolesaccountContact.setContact(policyContactRolecontact);
+        policyContactRolesaccountContactRole.setPrimaryContactRoleAccountContact(policyContactRolesaccountContact);
+        policyContactRolesaccountContactRole.setEntityNamedInsured(entityNamedInsured);
+        policyContactRolesaccountContactRole.setSubtype("NamedInsured");
+        policyContactRolesEntry.setAccountContactRoles(policyContactRolesaccountContactRole);
+        policyContactRolesEntry.setPolicyContactSubType("PolicyPriNamedInsured");
+        policyContactRoles.setPolicyContactRolesEntry(policyContactRolesEntry);
+        policy.setPolicyContactRoles(policyContactRoles);
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        policy.setPeriodEnd("2024-03-24");
+
+        PolicyPeriodData.Policy policyPeriodDatePolicy = new PolicyPeriodData.Policy();
+        policyPeriodDatePolicy.setPriorPremiums("0.00 usd");
+
+        policy.setPolicy(policyPeriodDatePolicy);
         quote.setPolicyPeriodData(policy);
         quote.generateAsXml();
     }

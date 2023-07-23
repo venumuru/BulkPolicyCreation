@@ -1,11 +1,16 @@
 package policyCreationPojo.request;
 
+import policyCreationPojo.request.PrimaryNamedInsured.PrimaryNamedInsured;
 import policyCreationPojo.request.jurisdictions.Jurisdictions;
 
 import javax.xml.bind.annotation.*;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "BusinessAutoLine")
+@XmlType(propOrder = {
+        "baLineCoverages",
+        "baModifiers","drivers","fleet","jurisdictions"
+})
 public class BusinessAutoLine {
 
     @XmlElement(name = "BALineCoverages", namespace = "http://guidewire.com/pc/gx/gw.webservice.pc.pc1000.gxmodel.businessautolinemodel")
@@ -16,8 +21,6 @@ public class BusinessAutoLine {
 
     @XmlElement(name = "Drivers", namespace = "http://guidewire.com/pc/gx/gw.webservice.pc.pc1000.gxmodel.businessautolinemodel")
     protected Drivers drivers;
-
-
 
     @XmlElement(name = "Jurisdictions", namespace = "http://guidewire.com/pc/gx/gw.webservice.pc.pc1000.gxmodel.businessautolinemodel")
     protected Jurisdictions jurisdictions;
