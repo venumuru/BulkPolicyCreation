@@ -58,5 +58,10 @@
                 <version>1.18.2</version>
                 <scope>provided</scope>
             </dependency>
+        <dependency>
+            <groupId>com.creditdatamw.labs</groupId>
+            <artifactId>zerocell-core</artifactId>
+            <version>0.3.2</version>
+        </dependency>
     </dependencies>
 </project>
