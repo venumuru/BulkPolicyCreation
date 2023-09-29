@@ -15,7 +15,7 @@ import java.util.HashMap;
 public class SupportMethods {
 
     ArrayList<String> cellValues;
-    HashMap<String, ArrayList> requestData;
+    HashMap<String, ArrayList> requestData = new HashMap<>();
     ArrayList<String> value;
     String location = "C:\\GitHub\\BulkPolicyCreation\\src\\main\\java\\dataReader\\";
     String fileName = "data.xlsx";
@@ -25,16 +25,16 @@ public class SupportMethods {
     XSSFSheet sheet;
     int rowCount;
     int colCount;
+    String sheetName;
 
     public HashMap<String, ArrayList> getRequestData() {
         updateSheetMetrics();
-        requestData = new HashMap<>();
-        readExcelData();
         return requestData;
     }
 
     public String setKey() {
         String key = new String();
+        key = sheetName + ".";
         ArrayList<String> value = new ArrayList<>();
         for (int i = 0; i < cellValues.size() - 1; i++) {
             key = key + cellValues.get(i) + ".";
@@ -79,8 +79,33 @@ public class SupportMethods {
             e.printStackTrace();
         }
 
-        sheet = workBook.getSheetAt(0);
-        rowCount = sheet.getLastRowNum();
-        colCount = sheet.getRow(1).getLastCellNum();
+//        sheet = workBook.getSheetAt(0);
+
+
+//        boolean isEndOfSheet = false;
+//        int sheetIterator = 0;
+//        do{
+//            isEndOfSheet = true;
+//            if(workBook.getSheetName(sheetIterator) != null) {
+//                sheetName = workBook.getSheetName(sheetIterator);
+//                sheet = workBook.getSheet(sheetName);
+//                rowCount = sheet.getLastRowNum();
+//                colCount = sheet.getRow(1).getLastCellNum();
+//                readExcelData();
+//                isEndOfSheet = false;
+//                sheetIterator++;
+//            }
+//        }
+//        while(!isEndOfSheet);
+//
+
+        for(int i = 0; i < workBook.getNumberOfSheets(); i ++){
+            sheetName = workBook.getSheetName(i);
+            sheet = workBook.getSheet(sheetName);
+            rowCount = sheet.getLastRowNum();
+            colCount = sheet.getRow(1).getLastCellNum();
+            readExcelData();
+        }
+
     }
 }
